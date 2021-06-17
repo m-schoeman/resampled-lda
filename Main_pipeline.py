@@ -29,9 +29,9 @@ import os
 from pathlib import Path
 import ResampledLDA
 from shutil import copyfile
-from utils import create_lda_pipelines
+from Utils import create_lda_pipelines
 
-from utils import get_benchmark_config
+from Utils import get_benchmark_config
 import time
 
 LOCAL_CONFIG_FILE = r'local_config.yaml'
