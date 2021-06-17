@@ -4,7 +4,7 @@ This repository contains the implementations to recreate the results of my bache
 [1] J. Sosulski, J. Kemmer, and M. Tangermann, “Improving Covariance Matrices Derived from Tiny Training Datasets for the Classification of Event-Related Potentials with Linear Discriminant Analysis”, Neuroinformatics, pp. 1–16, 2020.
 
 ## Reproducing the results
-To use this code and reproduce the results on Windows, you can clone the repository to your own machine. The Python version used is Python 3.8.8, and you can download specific versions of Python [here](https://www.python.org/downloads/). After you cloned the repository and installed Python, you need to create an evironment for it. I would recommend loading the repository in an IDE like PyCharm so that you can create an environment in the IDE and it is possible to run pip commands in the terminal. This also comes in handy when changins things in different files, which can be easily done in PyCharm as well.
+To use this code and reproduce the results on Windows, you can clone the repository to your own machine. The Python version used is Python 3.8.8, and you can download specific versions of Python [here](https://www.python.org/downloads/). After you cloned the repository and installed Python, you need to create an evironment for it. I would recommend loading the repository in an IDE like PyCharm so that you can create an environment in the IDE and it is possible to run pip commands in the terminal. This also comes in handy when changing commands in different files, which can be easily done in PyCharm as well.
 
 You can thus install the libraries that were used from `requirements.txt` like so: 
 ```
