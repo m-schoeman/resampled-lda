@@ -4,20 +4,20 @@ This repository contains the implementations to recreate the results of my bache
 [1] J. Sosulski, J. Kemmer, and M. Tangermann, “Improving Covariance Matrices Derived from Tiny Training Datasets for the Classification of Event-Related Potentials with Linear Discriminant Analysis”, Neuroinformatics, pp. 1–16, 2020.
 
 ## Reproducing the results
-To use this code and reproduce the results on Windows, you can clone the repository to your own machine. After you cloned the repository, you need to create an evironment for it, and then you can install the libraries that were used from requirements.txt like so: 
+To use this code and reproduce the results on Windows, you can clone the repository to your own machine. After you cloned the repository, you need to create an evironment for it, and then you can install the libraries that were used from `requirements.txt` like so: 
 ```
 pip install -r /path/to/requirements.txt
 ```
-After installing the requirements, modify the local_config.yaml file such that the roots to the directory where the SPOT data is stored and the directory where you want the results to be stored on your own machine are in there.\\
+After installing the requirements, modify the `local_config.yaml` file such that the roots to the directory where the SPOT data is stored and the directory where you want the results to be stored on your own machine are in there.\\
 Finally, to run the pipelines, you can open an Anaconda prompt and activate the environment,
 ```
 conda activate 'name of the environment'
 ```
-cd to the directory in which the .py files to run the pipelines are located, and run the following command to run the resampled LDA pipeline on all the data:
+cd to the directory in which the `.py` files to run the pipelines are located, and run the following command to run the resampled LDA pipeline on all the data:
  ```
  python main_pipeline.py spot_single
  ```
-Note that this __only__ runs the resampled LDA pipeline on the __whole__ SPOT dataset. If you want to run a different pipeline, you can go into the Utils.py file and in the function create_lda_pipelines() modify the variable in the classifier dictionary from ResLDA() to SLDA(), to run the shrinkage LDA.
+Note that this __only__ runs the resampled LDA pipeline on the __whole__ SPOT dataset. If you want to run a different pipeline, you can go into the `Utils.py` file and in the function `create_lda_pipelines()` modify the variable in the classifier dictionary from ResLDA() to SLDA(), to run the shrinkage LDA.
 
 If you only want to run the chosen pipeline on one subject, you can modify the command in the Anaconda prompt:
  ```
