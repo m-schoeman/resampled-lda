@@ -23,4 +23,7 @@ If you only want to run the chosen pipeline on one subject, you can modify the c
  ```
  python main_pipeline.py spot_single 0
  ```
-This means it will only run on the first subject. If you want to run it on another of the 13 subjects, change the 0 to another number in the [0-12] range. Finally, if you want to run the analysis on a different dataset, there are a number of valid datasets from the MOABB that you can run the analysis on. To do this, in the Anaconda command change spot_single to any of the following datasets: epfl, bnci_1, bnci_als, bnci_2, braininvaders. 
+This means it will only run on the first subject. If you want to run it on another of the 13 subjects, change the 0 to another number in the [0-12] range. Finally, if you want to run the analysis on a different dataset, there are a number of valid datasets from the MOABB that you can run the analysis on. To do this, in the Anaconda command change spot_single to any of the following datasets: epfl, bnci_1, bnci_als, bnci_2, braininvaders. For example:
+ ```
+ python main_pipeline.py bnci_1
+ ```
