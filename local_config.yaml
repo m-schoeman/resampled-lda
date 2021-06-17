@@ -1,0 +1,4 @@
+benchmark_meta_name: 'covariance_benchmark'
+results_root: 'Root to results folder'
+benchmark_extent: 'best_only'
+data_root: 'Root to data folder'
