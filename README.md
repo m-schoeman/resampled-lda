@@ -17,7 +17,9 @@ cd to the directory in which the .py files to run the pipelines are located, and
  ```
  python main_pipeline.py spot_single
  ```
-Note that this __only__ runs the resampled LDA pipeline on the __whole__ SPOT dataset. If you want to run a different pipeline, you can go into the Utils.py file and in the function create_lda_pipelines() modify the variable in the classifier dictionary from ResLDA() to SLDA(), to run the shrinkage LDA. If you only want to run the pipeline on one subject, you can modify the command in the Anaconda prompt:
+Note that this __only__ runs the resampled LDA pipeline on the __whole__ SPOT dataset. If you want to run a different pipeline, you can go into the Utils.py file and in the function create_lda_pipelines() modify the variable in the classifier dictionary from ResLDA() to SLDA(), to run the shrinkage LDA.
+
+If you only want to run the chosen pipeline on one subject, you can modify the command in the Anaconda prompt:
  ```
  python main_pipeline.py spot_single 0
  ```
