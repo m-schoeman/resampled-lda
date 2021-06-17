@@ -4,7 +4,7 @@ This repository contains the implementations to recreate the results of my bache
 [1] J. Sosulski, J. Kemmer, and M. Tangermann, “Improving Covariance Matrices Derived from Tiny Training Datasets for the Classification of Event-Related Potentials with Linear Discriminant Analysis”, Neuroinformatics, pp. 1–16, 2020.
 
 ## Reproducing the results
-To use this code and reproduce the results on Windows, you can clone the repository to your own machine. You need to create an evironment and then you can install the libraries that were used from requirements.txt like so: 
+To use this code and reproduce the results on Windows, you can clone the repository to your own machine. After you cloned the repository, you need to create an evironment for it, and then you can install the libraries that were used from requirements.txt like so: 
 ```
 pip install -r /path/to/requirements.txt
 ```
