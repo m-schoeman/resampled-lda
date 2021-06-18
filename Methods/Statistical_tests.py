@@ -42,7 +42,7 @@ for p in range(pipelines.shape[0]):
     axes[p].plot(space, norm.pdf(space,  loc = np.mean(scores), scale = np.std(scores)), color = 'tab:orange', label = 'superimposed normal distribution')
     axes[p].hist(scores, density = True, label = 'density histogram', color = 'tab:blue')
     axes[p].set_title("{}\nmean: {}  std: {}   kur: {}".format(pipelines[p], np.round(np.mean(scores), 2), np.round(np.std(scores), 2), np.round(kurtosis(scores), 2)))
- Add common lables and legend
+# Add common lables and legend
 fig.text(0.5, 0.00, 'Score', ha='center')
 fig.text(0.08, 0.65, 'bin count / total count', rotation='vertical')
 axes.flatten()[-2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), ncol=3)
