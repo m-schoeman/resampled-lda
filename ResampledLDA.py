@@ -199,7 +199,6 @@ class ResampledLinearDiscriminantAnalysis(sklearn.base.BaseEstimator, sklearn.li
         self.standardize_shrink = standardize_shrink
 
     def fit(self, X_train, y):
-        print('X shape',X_train.shape)
         self.classes_ = sklearn.utils.multiclass.unique_labels(y)
         if set(self.classes_) != {0, 1}:
             raise ValueError('currently only binary class supported')
@@ -224,7 +223,6 @@ class ResampledLinearDiscriminantAnalysis(sklearn.base.BaseEstimator, sklearn.li
 
         self.coef_ = w.reshape((1, -1))
         self.intercept_ = b
-        print("lda done")
 
     def predict_proba(self, X):
         prob = self.decision_function(X)
@@ -235,7 +233,6 @@ class ResampledLinearDiscriminantAnalysis(sklearn.base.BaseEstimator, sklearn.li
         return np.column_stack([1 - prob, prob])
 
     def resampled_cov(self, X, remove_outliers=False):
-        print("resampling 100% samples, noniid false")
         iterate = 100
         cov_shape, gamma_shape = _shrinkage(X)
         covariance = np.zeros((iterate, cov_shape.shape[0], cov_shape.shape[0]))
