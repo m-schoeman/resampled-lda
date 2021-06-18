@@ -12,7 +12,7 @@ If you want to create the environment differently, the libraries I have used can
 
 Finally, to run the pipelines, you can open an Anaconda prompt and activate the environment,
 ```
-conda activate 'ResampledLDA'
+conda activate ResampledLDA
 ```
 cd to the directory of the repository, and run the following command to run the resampled LDA pipeline on all the data:
  ```
