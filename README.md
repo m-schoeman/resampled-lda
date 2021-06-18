@@ -29,4 +29,4 @@ This means it will only run on the first subject. If you want to run it on anoth
  python Main_pipeline.py bnci_1
  ```
  
- To recreate the figures there are different files that you can use starting with 'Plot_', for these you possibly have to add a root to a data file and you can run the files in an IDE.
+ To recreate the figures there are different files that you can use starting with `Plot_`, for these you possibly have to add a root to a data file and you can run the files in an IDE.
