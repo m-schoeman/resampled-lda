@@ -23,7 +23,6 @@ class Vectorizer(BaseEstimator, TransformerMixin):
 
     def __init__(self, permute_channels_and_time=True, jumping_mean_ivals=None,
                  select_ival=None, fs=100, averaging_samples=None):
-        print("vectorizing")
         self.permute_channels_and_time = permute_channels_and_time
         self.jumping_mean_ivals = jumping_mean_ivals
         self.select_ival = select_ival
