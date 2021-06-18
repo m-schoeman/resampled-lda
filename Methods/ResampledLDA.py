@@ -28,6 +28,20 @@ from sklearn.preprocessing import StandardScaler
 
 
 def subtract_classwise_means(xTr, y):
+    """Subtract class-wise means
+        Parameters
+        ----------
+        X_train : array-like, shape (n_samples, n_features)
+            Input data.
+        y: array-like, shape (n_samples, 2)
+            Labels of the data
+        Returns 
+        -------
+        X : array-like, shape (n_features, n_samples)
+            Data with subtracted means
+        cl_mean : array-like
+            Class-wise means
+    """
     n_classes = 2
     n_features = xTr.shape[0]
     X = np.zeros((n_features, 0))
@@ -53,7 +67,16 @@ def diag_indices_with_offset(p, offset):
 
 def _shrinkage(X: np.ndarray, gamma=None, T=None, S=None, block=False,
                N_channels=31, N_times=5, standardize=True) -> Tuple[np.ndarray, float]:
-
+    """Ledoit-Wolf shrinkage and covariance calculation
+        Parameters
+        ----------
+        X : array-like, shape (n_features, n_samples)
+            Input data.
+        Returns
+        -------
+        Cstar : array-like, shape (n_features, n_features)
+        gamma : regularization parameter
+        """
     p, n = X.shape
 
     if standardize:
@@ -108,6 +131,14 @@ class ShrinkageLinearDiscriminantAnalysis(
         self.standardize_shrink = standardize_shrink
 
     def fit(self, X_train, y):
+        """Fit the shrinkage LDA
+        Parameters
+        ----------
+        X_train : array-like, shape (n_samples, n_features)
+            Input data.
+        y: array-like, shape (n_samples, 2)
+            Labels of the data
+        """
         self.classes_ = sklearn.utils.multiclass.unique_labels(y)
         if set(self.classes_) != {0, 1}:
             raise ValueError('currently only binary class supported')
@@ -199,6 +230,14 @@ class ResampledLinearDiscriminantAnalysis(sklearn.base.BaseEstimator, sklearn.li
         self.standardize_shrink = standardize_shrink
 
     def fit(self, X_train, y):
+        """Fit the resampled LDA
+        Parameters
+        ----------
+        X_train : array-like, shape (n_samples, n_features)
+            Input data.
+        y: array-like, shape (n_samples, 2)
+            Labels of the data
+        """
         self.classes_ = sklearn.utils.multiclass.unique_labels(y)
         if set(self.classes_) != {0, 1}:
             raise ValueError('currently only binary class supported')
@@ -225,6 +264,16 @@ class ResampledLinearDiscriminantAnalysis(sklearn.base.BaseEstimator, sklearn.li
         self.intercept_ = b
 
     def predict_proba(self, X):
+        """Estimate probability.
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Input data.
+        Returns
+        -------
+        C : array, shape (n_samples, n_classes)
+            Estimated probabilities.
+        """
         prob = self.decision_function(X)
         prob *= -1
         np.exp(prob, prob)
@@ -232,7 +281,19 @@ class ResampledLinearDiscriminantAnalysis(sklearn.base.BaseEstimator, sklearn.li
         np.reciprocal(prob, prob)
         return np.column_stack([1 - prob, prob])
 
-    def resampled_cov(self, X, remove_outliers=False):
+    def resampled_cov(self, X, remove_outliers=True):
+        """Resampling procedure to calculate covariance
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Input data.
+        remove_outliers: Bool
+            Outlier removal or not
+        Returns
+        -------
+        final_est : array, shape (n_features, n_features)
+            Estimated covariance matrix.
+        """
         iterate = 100
         cov_shape, gamma_shape = _shrinkage(X)
         covariance = np.zeros((iterate, cov_shape.shape[0], cov_shape.shape[0]))
@@ -246,18 +307,26 @@ class ResampledLinearDiscriminantAnalysis(sklearn.base.BaseEstimator, sklearn.li
         if remove_outliers:
             final_est = self.matrix_outliers(covariance)
         else:
-            print("No outlier removal and calculating mean")
             final_est = pyriemann.utils.mean.mean_covariance(covariance, metric='riemann')
         return final_est
 
     def matrix_outliers(self, covariance):
+        """Remove sample outlier matrices
+        Parameters
+        ----------
+        X : array-like, shape (n_covmats, n_features, n_features)
+            Input data.
+        Returns
+        -------
+        final_cov_removed_outliers : array, shape (n_features, n_features)
+            Averaged final covariance matrix with 20% of covmats treated as outliers.
+        """
         mean = pyriemann.utils.mean.mean_covariance(covariance, metric='riemann')
         dists = np.zeros((100))
         for i in range(0, covariance.shape[0]):
             dists[i] = pyriemann.utils.distance.distance_riemann(mean, covariance[i, :, :])
         sorted_dists = np.sort(dists)
-        outliers = sorted_dists[int(0.4 * len(sorted_dists)):len(sorted_dists)]
-        print("got mean & removing 60p outlier BNCI1")
+        outliers = sorted_dists[int(0.8 * len(sorted_dists)):len(sorted_dists)]
         new_covs = np.zeros((covariance.shape[0] - len(outliers), covariance.shape[1], covariance.shape[2]))
         c = 0
         for i in range(covariance.shape[0]):
