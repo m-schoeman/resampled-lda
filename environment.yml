@@ -69,4 +69,4 @@ dependencies:
     - seaborn==0.11.1
     - urllib3==1.26.4
     - wfdb==3.3.0
-prefix: C:\Users\marle\Anaconda3\envs\ResampledLDA
+    
