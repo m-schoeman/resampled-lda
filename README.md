@@ -8,7 +8,7 @@ To use this code and reproduce the results on Windows, you can clone the reposit
 ```
 conda env create -f environment.yml
 ```
-If you want to create the environment differently, the libraries I have used can be found in 'requirements.txt'. After setting up the environment, modify the `local_config.yaml` file such that the roots to the directory where the SPOT data is stored and the directory where you want the results to be stored on your own machine are in there.
+If you want to create the environment differently, the libraries I have used can be found in 'requirements.txt'. After setting up the environment, modify the `local_config.yaml` file such that the root to the directory where the SPOT data is stored and the directory where you want the results to be stored on your own machine are in there.
 
 Finally, to run the pipelines, you can open an Anaconda prompt and activate the environment,
 ```
