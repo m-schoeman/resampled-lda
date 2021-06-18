@@ -6,7 +6,7 @@ This repository contains the implementations to recreate the results of my bache
 ## Reproducing the results
 To use this code and reproduce the results on Windows, you can clone the repository to your own machine. The Python version used is Python 3.8.8, and you can download specific versions of Python [here](https://www.python.org/downloads/). Make sure you have a version of Anaconda installed as well, I used Anaconda3. To create the environment, open up an Anaconda prompt, cd into the directory where you cloned the repository and run the following command:
 ```
-conda env create environment.yml
+conda env create -f environment.yml
 ```
 If you want to create the environment differently, the libraries I have used can be found in 'requirements.txt'. After setting up the environment, modify the `local_config.yaml` file such that the roots to the directory where the SPOT data is stored and the directory where you want the results to be stored on your own machine are in there.
 
